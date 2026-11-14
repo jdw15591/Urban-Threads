@@ -36,10 +36,14 @@
         <p class="eyebrow">Find your style</p>
         <h2 id="category-title">Shop by Category</h2>
       </div>
-      <div class="category-grid">
-        <a class="category-card category-hoodies" href="#hoodies"><span>Hoodies <b aria-hidden="true">→</b></span></a>
-        <a class="category-card category-shirts" href="#shirts"><span>Shirts <b aria-hidden="true">→</b></span></a>
-        <a class="category-card category-pants" href="#pants"><span>Pants <b aria-hidden="true">→</b></span></a>
+      <div class="category-grid" aria-label="Filter products by category">
+        <button class="category-card category-hoodies" type="button" data-filter="hoodies" aria-pressed="false"><span>Hoodies <b aria-hidden="true">→</b></span></button>
+        <button class="category-card category-shirts" type="button" data-filter="shirts" aria-pressed="false"><span>Shirts <b aria-hidden="true">→</b></span></button>
+        <button class="category-card category-pants" type="button" data-filter="pants" aria-pressed="false"><span>Pants <b aria-hidden="true">→</b></span></button>
+      </div>
+      <div class="filter-toolbar">
+        <p id="filter-status" aria-live="polite">Showing all products</p>
+        <button class="clear-filter" type="button" data-filter="all" aria-pressed="true">Shop All</button>
       </div>
     </section>
 
@@ -49,7 +53,7 @@
         <h2 id="products-title">All Products</h2>
       </div>
       <div class="product-grid">
-        <article class="product-card" id="hoodies">
+        <article class="product-card" id="hoodies" data-category="hoodies">
           <img src="images/hoodie.jpg" alt="Gray streetwear hoodie">
           <div class="product-info">
             <h3>Urban Hoodie</h3>
@@ -57,7 +61,7 @@
             <a class="product-link" href="contact.html">Ask About This Item</a>
           </div>
         </article>
-        <article class="product-card" id="shirts">
+        <article class="product-card" id="shirts" data-category="shirts">
           <img src="images/tshirt.jpg" alt="Graphic streetwear T-shirt">
           <div class="product-info">
             <h3>Graphic Tee</h3>
@@ -65,7 +69,7 @@
             <a class="product-link" href="contact.html">Ask About This Item</a>
           </div>
         </article>
-        <article class="product-card" id="pants">
+        <article class="product-card" id="pants" data-category="pants">
           <img src="images/cargo-pants.jpg" alt="Dark streetwear cargo pants">
           <div class="product-info">
             <h3>Cargo Pants</h3>
@@ -104,5 +108,33 @@
     </div>
     <p class="copyright">© 2026 Urban Threads. All rights reserved.</p>
   </footer>
+
+  <script>
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const productCards = document.querySelectorAll(".product-card[data-category]");
+    const filterStatus = document.getElementById("filter-status");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedCategory = button.dataset.filter;
+        let visibleCount = 0;
+
+        productCards.forEach((card) => {
+          const shouldShow = selectedCategory === "all" ||
+            card.dataset.category === selectedCategory;
+          card.hidden = !shouldShow;
+          if (shouldShow) visibleCount += 1;
+        });
+
+        filterButtons.forEach((item) => {
+          item.setAttribute("aria-pressed", String(item === button));
+        });
+
+        filterStatus.textContent = selectedCategory === "all"
+          ? "Showing all products"
+          : `Showing ${visibleCount} ${selectedCategory}`;
+      });
+    });
+  </script>
 </body>
 </html>
