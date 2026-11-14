@@ -1,0 +1,107 @@
+/* Urban Threads contact page */
+:root {
+  --black: #0A0B07;
+  --soft-black: #1E1F19;
+  --sky-blue: #8FBED0;
+  --light-blue: #ADCEDA;
+  --deep-blue: #0C5F8A;
+  --orange: #CD5F2F;
+  --peach: #F1B478;
+  --off-white: #EDEEED;
+  --white: #FFFFFF;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--off-white);
+  color: var(--black);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; }
+.site-header {
+  min-height: 112px;
+  padding: 22px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  background: var(--black);
+  color: var(--white);
+}
+.brand { display: flex; flex-direction: column; text-decoration: none; line-height: 1.2; }
+.brand-name { font-size: 1.6rem; font-weight: 800; letter-spacing: .03em; }
+.tagline { margin-top: 5px; color: var(--sky-blue); font-size: .72rem; font-weight: 700; letter-spacing: .28em; }
+nav { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+nav a { color: var(--white); text-decoration: none; font-size: .9rem; font-weight: 700; text-transform: uppercase; }
+nav a:hover, nav a:focus { color: var(--sky-blue); }
+.intro { padding: 62px 5% 35px; text-align: center; }
+.eyebrow { color: var(--deep-blue); font-size: .78rem; font-weight: 800; letter-spacing: .18em; }
+h1 { margin: 5px 0 10px; font-size: clamp(2.3rem, 4vw, 3.5rem); line-height: 1.1; text-transform: uppercase; }
+.intro p:last-child { color: var(--soft-black); }
+.contact-layout {
+  max-width: 1120px;
+  margin: 0 auto 80px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 42px;
+  align-items: start;
+}
+.contact-info { padding: 34px; background: var(--black); color: var(--white); }
+.contact-info h2 { margin-top: 0; font-size: 1.5rem; }
+.contact-info h3 { margin: 28px 0 4px; color: var(--sky-blue); font-size: 1rem; }
+.contact-info a { color: var(--light-blue); }
+.signoff { margin-top: 36px; color: var(--peach); font-weight: 700; }
+.contact-form { padding: 34px; background: var(--white); box-shadow: 0 8px 28px rgba(10,11,7,.08); }
+.form-field { margin-bottom: 20px; }
+label { display: block; margin-bottom: 7px; font-weight: 700; }
+input, select, textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #9A9D98;
+  border-radius: 2px;
+  background: var(--off-white);
+  color: var(--black);
+  font: inherit;
+}
+textarea { min-height: 150px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: 3px solid var(--light-blue); border-color: var(--deep-blue); }
+button {
+  min-height: 48px;
+  padding: 12px 24px;
+  border: 0;
+  background: var(--deep-blue);
+  color: var(--white);
+  font: inherit;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+button:hover, button:focus { background: var(--black); }
+.form-note { margin-top: 14px; color: #555950; font-size: .82rem; }
+footer {
+  padding: 45px 5% 22px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
+  gap: 28px;
+  background: var(--black);
+  color: var(--white);
+}
+footer h2 { margin: 0 0 10px; font-size: 1rem; }
+footer a { display: block; margin: 5px 0; color: var(--off-white); text-decoration: none; overflow-wrap: anywhere; }
+footer a:hover, footer a:focus { color: var(--sky-blue); }
+.footer-brand { display: flex; flex-direction: column; gap: 7px; }
+.footer-brand strong { font-size: 1.35rem; }
+.footer-brand span { color: var(--sky-blue); font-size: .72rem; letter-spacing: .2em; }
+.copyright { grid-column: 1 / -1; margin: 12px 0 0; padding-top: 18px; border-top: 1px solid #444A45; text-align: center; font-size: .82rem; }
+@media (max-width: 700px) {
+  .site-header { align-items: flex-start; flex-direction: column; }
+  nav { gap: 10px 16px; }
+  nav a { font-size: .78rem; }
+  .contact-layout { grid-template-columns: 1fr; gap: 22px; }
+  .contact-info, .contact-form { padding: 25px; }
+  footer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-brand { grid-column: 1 / -1; }
+}
